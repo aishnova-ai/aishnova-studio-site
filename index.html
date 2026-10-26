@@ -644,7 +644,7 @@ const SETTINGS = {
   /* Full sales pages. Swap for your own domain's page once it's live. */
   PAGES: { motionmuse:"https://claude.ai/artifact/7oN8FEM4tZUrrNeaCTGESf", threads:"https://claude.ai/artifact/KEvBVfj64EZbcG31EFc8Av" },
   CHECKOUT: {
-    motionmuse:"", reelcraft:"", carouselcraft:"", threads:"https://shop.beacons.ai/aishnova/b47dee75-257a-48b9-bb43-eb91028a186d", csk:"https://shop.beacons.ai/aishnova/d3b3fed5-50e4-4adb-bd89-109eacfc4ffc", bundle:"",
+    motionmuse:"", reelcraft:"", carouselcraft:"", threads:"/threads", csk:"/csk", bundle:"",
     offertrainer:"", siteiq:"", storydrop:"", businessos:"",
     power:"", sprint:"", intensive:""
   }
@@ -678,7 +678,7 @@ document.addEventListener("click",e=>{
   if(g){e.preventDefault();openView(g.dataset.go,g.dataset.focus);return}
   const b=e.target.closest("[data-buy]");
   if(b){const url=SETTINGS.CHECKOUT[b.dataset.buy];
-    if(url){b.href=url;b.target="_blank";b.rel="noopener";return}
+    if(url){b.href=url;if(!url.startsWith("/")){b.target="_blank";b.rel="noopener"}return}
     e.preventDefault();toast("Coming soon. Join AI Workflow Lab free to hear the moment it opens.");return}
   const p=e.target.closest("[data-pick]");
   if(p){$("#ap-service").value=p.dataset.pick;const d=$("#drawer");d.scrollTop=$("#apply").offsetTop-90;setTimeout(()=>$("#ap-name").focus({preventScroll:true}),50);return}
