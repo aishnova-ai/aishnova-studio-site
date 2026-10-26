@@ -106,7 +106,7 @@ b,strong{font-weight:500}
 .screen{position:relative;border-radius:26px;overflow:hidden;background:var(--onyx);aspect-ratio:16/9;box-shadow:0 1px 0 var(--line),0 40px 70px -40px rgba(21,18,19,.55)}
 .screen::after{content:"";position:absolute;inset:10px;border:1px solid rgba(237,198,184,.35);border-radius:18px;pointer-events:none;transition:opacity .3s}
 .screen video{width:100%;height:100%;display:block;object-fit:cover;background:var(--onyx)}
-.play{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;gap:14px;padding:clamp(18px,3vw,36px);border:0;background:linear-gradient(180deg,rgba(21,18,19,0) 40%,rgba(21,18,19,.35));cursor:pointer;color:var(--porcelain)}
+.play{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;gap:14px;padding:clamp(18px,3vw,36px);border:0;background:linear-gradient(180deg,rgba(21,18,19,0) 60%,rgba(21,18,19,.3));cursor:pointer;color:var(--porcelain)}
 .play .disc-btn{width:clamp(56px,6vw,76px);aspect-ratio:1;border-radius:50%;background:var(--rosegold);display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(127,71,64,.7);transition:transform .3s}
 .play:hover .disc-btn{transform:scale(1.06)}
 .play svg{width:34%;height:34%;margin-left:6%}
@@ -387,8 +387,8 @@ body.locked{overflow:hidden}
       <h2>See <em>where it starts</em>.</h2>
     </div>
     <div class="screen" id="screen">
-      <video id="filmVid" src="video/aishnova-film.mp4" poster="img/film-poster.jpg" playsinline preload="metadata" aria-label="Aishnova studio film: Learn AI, build with AI, earn with AI, starting with Claude Studio Kit"></video>
-      <button class="play" id="filmPlay" type="button" aria-label="Play the Aishnova film with sound"><span class="pill"><span class="disc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#151213"/></svg></span><span class="sc">Play with sound</span></span></button>
+      <video id="filmVid" src="video/aishnova-film.mp4" poster="img/film-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Aishnova studio film: Learn AI, build with AI, earn with AI, starting with Claude Studio Kit"></video>
+      <button class="play" id="filmPlay" type="button" aria-label="Play the Aishnova film from the start with sound"><span class="pill"><span class="disc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#151213"/></svg></span><span class="sc">Tap for sound</span></span></button>
     </div>
   </div>
 </section>
@@ -737,8 +737,9 @@ async function muPlay(){try{muInit()}catch(e){toast("Music isn't supported in th
 function muStop(){if(!MU.ctx||!MU.playing)return;MU.playing=false;clearInterval(MU.timer);MU.master.gain.setTargetAtTime(0,MU.ctx.currentTime,.35);bedStop();setTimeout(()=>{if(!MU.playing)MU.ctx.suspend()},1600);muUI()}
 /* film */
 const fv=$("#filmVid"),fs=$("#screen");
-$("#filmPlay").addEventListener("click",()=>{fv.controls=true;fs.classList.add("on");if(typeof muStop==="function")muStop();const pr=fv.play();if(pr&&pr.catch)pr.catch(()=>{fs.classList.remove("on")})});
-fv.addEventListener("ended",()=>{fv.controls=false;fs.classList.remove("on");fv.currentTime=0;fv.load()});
+fv.muted=true;const fp0=fv.play();if(fp0&&fp0.catch)fp0.catch(()=>{});
+$("#filmPlay").addEventListener("click",()=>{if(typeof muStop==="function")muStop();fv.loop=false;fv.muted=false;fv.currentTime=0;fv.controls=true;fs.classList.add("on");const pr=fv.play();if(pr&&pr.catch)pr.catch(()=>{fv.muted=true;fv.loop=true;fv.controls=false;fs.classList.remove("on")})});
+fv.addEventListener("ended",()=>{fv.controls=false;fv.muted=true;fv.loop=true;fs.classList.remove("on");fv.currentTime=0;fv.play().catch(()=>{})});
 $("#dkMusic").addEventListener("click",()=>MU.playing?muStop():muPlay());
 $("#dMini").addEventListener("click",muStop);
 muUI();
