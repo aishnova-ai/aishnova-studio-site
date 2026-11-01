@@ -164,6 +164,16 @@ footer { text-align: center; font-size: 12.5px; color: var(--muted); }
 <script>
 (function () {
   var SALES = "/csk";
+  // Affiliate links: aishnova.com/quiz?aff=<Beacons affiliateLinkId> sends the buy button to that affiliate's checkout link.
+  var BEACONS = "https://shop.beacons.ai/aishnova/d3b3fed5-50e4-4adb-bd89-109eacfc4ffc";
+  var AFF = null;
+  (function () {
+    var re = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    var q = null; try { q = new URLSearchParams(location.search).get("aff"); } catch (e) {}
+    if (q && re.test(q)) { AFF = q.toLowerCase(); try { localStorage.setItem("csk-quiz-aff", AFF); } catch (e) {} }
+    else { try { var s = localStorage.getItem("csk-quiz-aff"); if (s && re.test(s)) AFF = s; } catch (e) {} }
+    if (AFF) SALES = BEACONS + "?affiliateLinkId=" + encodeURIComponent(AFF);
+  })();
   var AWL = "https://www.skool.com/ai-workflow-lab-1043";
   var STORE = "csk-income-quiz";
 
@@ -348,7 +358,7 @@ footer { text-align: center; font-size: 12.5px; color: var(--muted); }
       '<p>The kit gives you the lessons for this path in order, the prompts to find clients, proposals that win, and every tool to deliver the work. From your first prompt to your first paying client.</p>' +
       '<div class="price">$57 <span class="muted" style="font-family:var(--body);font-size:15px;font-weight:600">one-time</span></div>' +
       '<p><strong>Doors open Wednesday 4 November.</strong> Join in launch week (until Tuesday 10 November) and you also get Threads Growth Studio free, normally $47.</p>' +
-      '<a class="btn" href="' + SALES + '">Get Claude Studio Kit 2.0</a>' +
+      '<a class="btn" href="' + SALES + '"' + (AFF ? ' target="_blank" rel="noopener"' : '') + '>Get Claude Studio Kit 2.0</a>' +
       '<a class="btn ghost" href="' + AWL + '" target="_blank" rel="noopener">Join the free AWL community</a>' +
       '<p class="note">Prices above are starter suggestions to test in your market, not promises of income. Results depend on the work you put in.</p>' +
     '</section>' +
