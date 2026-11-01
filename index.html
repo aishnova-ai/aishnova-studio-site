@@ -143,6 +143,17 @@ b,strong{font-weight:500}
 .tag{display:inline-block;background:var(--blush);color:var(--rose-deep);border-radius:999px;padding:5px 12px;font-size:10.5px}
 #csk > img{aspect-ratio:16/9;width:clamp(120px,22vw,190px)}
 .collection{padding-block:clamp(64px,9vw,112px)}
+.quizband{padding-block:clamp(56px,8vw,96px)}
+.qb{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center;background:var(--pearl);border:1px solid var(--line-r);border-radius:28px;padding:clamp(28px,5vw,56px)}
+.qb h2{font-size:clamp(32px,4.6vw,52px)}
+.qb h2 em{color:var(--mauve)}
+.qb p{color:var(--ink-soft);font-size:18px}
+.qb .ctas{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:6px}
+.qb ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.qb li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:baseline;font-size:16px}
+.qb li b{font-family:var(--display);font-size:20px;color:var(--rose-deep)}
+@media (max-width:860px){.qb{grid-template-columns:1fr}}
+
 .shelf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,24px);align-items:start}
 @media (max-width:980px){.shelf{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .item{background:#FFFFFF;border-radius:22px;padding:10px 10px 18px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--ink);box-shadow:0 1px 0 var(--line),0 24px 40px -30px rgba(21,18,19,.35);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;min-width:0}
@@ -410,12 +421,32 @@ body.locked{overflow:hidden}
         <div class="price"><b>$57</b><small>One-time · lifetime access</small></div>
         <a class="btn btn-rose" href="#" data-buy="csk">Get Claude Studio Kit</a>
         <a class="link" href="#shop" data-go="shop" data-focus="csk">What's inside</a>
+        <a class="link" href="/quiz">Not sure yet? Take the free quiz</a>
       </div>
     </div>
     <figure class="kit-art">
       <img src="img/csk-card.jpg" alt="Claude Studio Kit 2.0 title card with a rose-gold robot" width="1672" height="941" loading="lazy">
       <figcaption class="sc">30+ lessons · 7 income paths · private community</figcaption>
     </figure>
+  </div>
+</section>
+
+<section class="quizband" id="quiz">
+  <div class="wrap">
+    <div class="qb">
+      <div style="display:grid;gap:16px">
+        <p class="sc eyebrow">Free · 2 minutes · 6 questions</p>
+        <h2>Which Claude income path <em>fits you?</em></h2>
+        <p>Find the fastest way for you to get paid with AI, based on what you enjoy, who you know and how you like to work.</p>
+        <div class="ctas"><a class="btn btn-onyx" href="/quiz">Take the free quiz</a><span class="sc" style="color:var(--mute)">No sign-up needed</span></div>
+      </div>
+      <ul>
+        <li><b>1</b><span>Your best-fit path out of 7, and a runner-up</span></li>
+        <li><b>2</b><span>Who pays, what you deliver and a starter price to test</span></li>
+        <li><b>3</b><span>A 3-day starter plan you can begin today</span></li>
+        <li><b>4</b><span>A copy-paste Claude prompt to shape your first offer</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -524,7 +555,8 @@ body.locked{overflow:hidden}
     <section class="view" id="v-free" data-crumb="The studio · Complimentary" hidden>
       <p class="sc eyebrow">Complimentary</p>
       <h2>A gift from the <em>studio</em>.</h2>
-      <p class="lede" style="color:var(--ink-soft)">Two free guides. Choose one or both, and they arrive in your inbox.</p>
+      <p class="lede" style="color:var(--ink-soft)">Free resources from the studio. Start with the quiz, then pick a guide.</p>
+      <div class="form"><h3>Which Claude income path fits you?</h3><p class="full" style="color:var(--ink-soft)">A 2-minute quiz that matches you to one of 7 ways to get paid with Claude, with a 3-day starter plan.</p><div class="full"><a class="btn btn-onyx" href="/quiz">Take the free quiz</a></div></div>
       <form class="form kit-form" data-tag="workflow-vault"><h3>The Claude Workflow Vault</h3><p class="full" style="color:var(--ink-soft)">25 advanced Claude workflows for content, offers and automation.</p>
         <label class="full">Email<input id="vault-email" type="email" name="email_address" required autocomplete="email"></label>
         <div class="full"><button class="btn btn-onyx" type="submit">Send me the Vault</button><p class="form-note" aria-live="polite"></p></div></form>

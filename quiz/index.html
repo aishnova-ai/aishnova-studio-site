@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Which Claude income path fits you? | Free quiz | Aishnova</title>
+<meta name="description" content="A free 2-minute quiz that matches you to one of 7 ways to get paid with Claude, with a 3-day starter plan and a ready prompt to copy.">
+<meta property="og:title" content="Which Claude income path fits you? | Free quiz">
+<meta property="og:description" content="6 questions, 2 minutes: find your best-fit Claude income path, who pays, a starter price and a 3-day plan.">
+<meta property="og:url" content="https://aishnova.com/quiz">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://aishnova.com/csk/img/og-quiz.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#121011">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow card column, like a phone screen even on desktop. Intro → one question at a time → result. */
+:root {
+  --bg: #121011;
+  --bg-2: #181415;
+  --card: #1C1718;
+  --line: rgba(245, 239, 232, 0.10);
+  --fg: #F2EBE3;
+  --muted: #B7A39A;
+  --mauve: #A86F7F;
+  --mauve-deep: #2A1E21;
+  --gold: #C9A46C;
+  --on-accent: #FFFFFF;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #FBF8F4; --bg-2: #F5EFE8; --card: #FFFFFF; --line: rgba(150, 96, 111, 0.20);
+    --fg: #241A1B; --muted: #6B5A55; --mauve: #96606F; --mauve-deep: #F3E7EA; --gold: #8B6A3A; --on-accent: #FFFFFF;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #FBF8F4; --bg-2: #F5EFE8; --card: #FFFFFF; --line: rgba(150, 96, 111, 0.20);
+  --fg: #241A1B; --muted: #6B5A55; --mauve: #96606F; --mauve-deep: #F3E7EA; --gold: #8B6A3A; --on-accent: #FFFFFF;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 560px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; display: grid; gap: 22px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 em, h2 em { font-style: italic; color: var(--gold); font-weight: 500; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.muted { color: var(--muted); }
+
+.mast { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.mark { font-weight: 800; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; }
+.mark i { font-family: var(--display); font-style: italic; font-weight: 600; letter-spacing: 0; font-size: 18px; color: var(--gold); margin-left: 5px; }
+.free { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 26px 22px; display: grid; gap: 18px; }
+
+/* Intro */
+.intro h1 { font-size: clamp(36px, 9vw, 52px); }
+.intro .lede { color: var(--muted); font-size: 17px; }
+.paths { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.paths li { font-size: 13px; font-weight: 600; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); background: var(--bg-2); }
+.gets { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.gets li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; color: var(--muted); font-size: 15px; }
+.gets li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-top: 8px; }
+.gets strong { color: var(--fg); }
+
+.btn { appearance: none; border: 0; cursor: pointer; font: 800 16px/1 var(--body); letter-spacing: 0.01em; padding: 18px 22px; min-height: 56px; border-radius: 16px; background: var(--mauve); color: var(--on-accent); width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; transition: transform .15s ease, filter .15s ease; }
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: scale(0.99); }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+.btn:focus-visible, .opt:focus-visible, .link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.small { font-size: 13px; color: var(--muted); text-align: center; }
+
+/* Question */
+.progress { display: grid; gap: 8px; }
+.bar { height: 6px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line); overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--gold); border-radius: 999px; transition: width .35s ease; }
+.qhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.qnum { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--muted); }
+.link { background: none; border: 0; color: var(--muted); font: 600 14px var(--body); cursor: pointer; padding: 6px 0; min-height: 44px; }
+.link:hover { color: var(--fg); }
+.q h2 { font-size: clamp(26px, 6.4vw, 34px); }
+.opts { display: grid; gap: 10px; }
+.opt { appearance: none; text-align: left; cursor: pointer; width: 100%; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); border-radius: 16px; padding: 16px 16px; min-height: 56px; font: 600 16px/1.35 var(--body); display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; align-items: center; transition: border-color .15s ease, background .15s ease; }
+.opt:hover { border-color: var(--mauve); }
+.opt .dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); display: block; }
+.opt[aria-pressed="true"] { border-color: var(--mauve); background: var(--mauve-deep); }
+.opt[aria-pressed="true"] .dot { border-color: var(--gold); background: radial-gradient(circle, var(--gold) 45%, transparent 50%); }
+.opt small { display: block; color: var(--muted); font-weight: 500; font-size: 13.5px; margin-top: 3px; }
+
+/* Result */
+.result h2 { font-size: clamp(32px, 8vw, 46px); }
+.tagline { font-size: 17px; color: var(--muted); }
+.facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.fact { display: grid; gap: 4px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.fact .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.fact ul { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.days { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.days li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; align-items: start; }
+.days .d { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--on-accent); background: var(--mauve); border-radius: 10px; padding: 6px 0; text-align: center; }
+.days.locked .d { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
+.days.locked li span:last-child { color: var(--muted); }
+.prompt { position: relative; background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 12px; }
+.prompt pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 13.5px/1.6 var(--mono); color: var(--fg); }
+.copy { justify-self: start; appearance: none; border: 1px solid var(--line); background: var(--card); color: var(--fg); border-radius: 12px; padding: 10px 14px; min-height: 44px; font: 700 14px var(--body); cursor: pointer; }
+.also { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--muted); font-size: 15px; }
+.also b { color: var(--fg); }
+.cta { background: var(--mauve-deep); border: 1px solid var(--mauve); border-radius: 24px; padding: 24px 22px; display: grid; gap: 14px; }
+.cta h3 { font-size: 26px; }
+.cta p { color: var(--muted); }
+.cta .price { font-family: var(--display); font-size: 40px; font-weight: 600; line-height: 1; }
+.note { font-size: 12.5px; color: var(--muted); }
+footer { text-align: center; font-size: 12.5px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .bar span, .btn, .opt { transition: none; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <a class="mark" href="/" style="text-decoration:none;color:inherit">Claude Studio Kit<i>2.0</i></a>
+    <div class="free">Free quiz</div>
+  </header>
+
+  <main id="app" aria-live="polite">
+    <!-- Intro (visible at rest; script swaps in questions and the result) -->
+    <section class="card intro" id="intro">
+      <div class="eyebrow">2 minutes · 6 questions</div>
+      <h1>Which Claude income path <em>fits you?</em></h1>
+      <p class="lede">You've learned Claude. Now find the fastest way for you to get paid with it, based on what you enjoy, who you know and how you like to work.</p>
+      <ul class="paths" aria-label="The seven income paths">
+        <li>Social media content service</li>
+        <li>AI UGC and ad creatives</li>
+        <li>Websites and landing pages</li>
+        <li>AI employee setups</li>
+        <li>Digital products</li>
+        <li>Claude coaching and workshops</li>
+        <li>Motion and explainer videos</li>
+      </ul>
+      <ul class="gets">
+        <li><span><strong>Your best-fit path</strong> and a runner-up</span></li>
+        <li><span><strong>Who pays</strong>, what you deliver and a starter price</span></li>
+        <li><span><strong>A 3-day starter plan</strong> you can begin today</span></li>
+        <li><span><strong>A copy-paste Claude prompt</strong> to shape your first offer</span></li>
+      </ul>
+      <button class="btn" id="start" type="button">Start the quiz</button>
+      <p class="small">No sign-up needed. Your answers stay on your device.</p>
+    </section>
+  </main>
+
+  <footer>Claude Studio Kit · by <a href="/" style="color:inherit">Aishnova</a></footer>
+</div>
+
+<script>
+(function () {
+  var SALES = "/csk";
+  var AWL = "https://www.skool.com/ai-workflow-lab-1043";
+  var STORE = "csk-income-quiz";
+
+  var PATHS = {
+    content: {
+      name: "Social Media Content Service",
+      tagline: "Run content for small businesses that have no time to post.",
+      whoPays: "Salons, cafés, coaches, clinics, boutiques and local service businesses that post rarely or badly.",
+      deliver: ["A monthly content plan built around their offers", "12–20 posts a month: captions, carousels and graphics", "Scheduling and a simple monthly results report"],
+      price: "Around $300–$800 per client per month to start, raised as you collect results.",
+      days: ["Pick one niche, like beauty salons, and shape your offer with the prompt below.", "Ask Claude to create 3 sample posts for an imaginary business in that niche.", "Find 10 businesses in that niche that post rarely, and note one thing you'd improve for each."],
+      prompt: "Help me package a monthly social media content service for [your niche].\nCreate 3 tiers (Starter / Growth / Premium) with posts per month, formats, revisions, reporting and a suggested price for [your market].\nThen write a one-paragraph offer I can paste in DMs and on my website."
+    },
+    ugc: {
+      name: "AI UGC & Ad Creative Studio",
+      tagline: "Make scroll-stopping video ads for brands, without filming.",
+      whoPays: "E-commerce, skincare, wellness, SaaS and local brands that need fresh ad creatives every month.",
+      deliver: ["AI UGC-style testimonial and demo videos", "Hero product images and short motion ads", "Hooks, scripts and captions for every ad"],
+      price: "Packages from about $300 for 3 videos to $1,200 for 15 videos a month.",
+      days: ["Pick one product you love and ask Claude for 3 hook-led ad scripts.", "Turn your best script into a sample video with an AI video tool.", "Find 10 brands running ads whose creatives look tired (check the Meta Ad Library)."],
+      prompt: "Create 3 AI UGC / ad creative packages for [your niche] brands: number of videos, formats (9:16, 1:1), revisions, turnaround and price.\nAdd one low-risk \"test pack\" offer for first-time clients."
+    },
+    websites: {
+      name: "Websites & Landing Pages",
+      tagline: "Build fast, beautiful sites for businesses, with Claude doing the code.",
+      whoPays: "Small businesses with no website or an outdated one, coaches launching offers, and creators who need a sales page.",
+      deliver: ["A 1–5 page website or a single landing page", "Copy written in the client's voice", "Hosting set-up and a custom domain"],
+      price: "Around $500–$1,500 per site to start, plus an optional monthly care plan.",
+      days: ["Ask Claude to build a one-page portfolio for you, then publish it.", "Redesign one local business homepage as a private sample.", "Find 10 businesses whose sites are slow, outdated or missing a booking button."],
+      prompt: "Create a simple website offer for [your niche]: a Starter (1 page), Business (up to 5 pages) and Launch (sales page + email capture) package, with what's included, timeline and price.\nAdd a monthly care plan option."
+    },
+    automation: {
+      name: "AI Employee Setups",
+      tagline: "Set up Claude as a working assistant inside a small business.",
+      whoPays: "Busy founders, agencies, clinics, consultants and service businesses drowning in email, admin and reports.",
+      deliver: ["Claude set up with memory, Skills and the right connectors", "3–5 scheduled jobs: inbox triage, reports, follow-ups", "A short training session and a one-page guide"],
+      price: "Around $500–$2,000 per set-up, plus an optional monthly care plan.",
+      days: ["Set up your own Claude with memory and one scheduled task, like a Monday plan.", "Write down the hours it saves you. That's your pitch.", "List 10 business owners you could offer a free 20-minute AI time audit."],
+      prompt: "Package an \"AI Employee Setup\" service for [your niche]: what's included (memory set-up, Skills, connectors, scheduled jobs, training), timeline, price and a monthly care plan.\nWrite it so a non-technical owner understands the benefit in hours saved."
+    },
+    products: {
+      name: "Digital Products",
+      tagline: "Package what you know into products that sell while you sleep.",
+      whoPays: "Your own audience: creators, freelancers and small business owners who want shortcuts.",
+      deliver: ["Claude Skill packs and prompt libraries", "Templates, guides and Notion or Canva kits", "Mini web tools and calculators"],
+      price: "Most first products sell at $9–$97. Start small, then bundle.",
+      days: ["Collect 10 questions your audience asks you, and ask Claude which problem repeats.", "Outline a small product ($9–$47) that solves that one problem fast.", "Write the name, promise and 5 sales-page bullets with the prompt below."],
+      prompt: "I want to sell a small digital product to [my audience].\nThese are questions they ask me often: [paste them].\n1. Which problem repeats the most?\n2. Suggest 5 small products ($9–$47) that solve it fast.\n3. For the best one, write the product name, the promise and 5 bullet points for the sales page."
+    },
+    coaching: {
+      name: "Claude Coaching & Workshops",
+      tagline: "Teach people and teams to save hours every week with Claude.",
+      whoPays: "Busy professionals (1:1), small teams and companies (training), schools and communities (workshops).",
+      deliver: ["1:1 sessions that set Claude up for the person's real work", "Team trainings with ready-to-use prompts and Skills", "Workshops with a take-home guide"],
+      price: "Around $100–$300 per 1:1 session; workshops and team trainings from about $500.",
+      days: ["List 5 jobs your audience would love to hand to Claude.", "Ask Claude to outline a 60-minute workshop with 3 live demos.", "Offer a free mini-workshop to one community or a friend's team."],
+      prompt: "Create my Claude coaching offers: a 1:1 \"Claude Set-Up Session\", a 3-session package and a team workshop.\nFor each: the outcome, what's included, length, price and who it's for."
+    },
+    motion: {
+      name: "Motion & Explainer Videos",
+      tagline: "Create premium animated videos for launches, explainers and Reels.",
+      whoPays: "SaaS startups, course creators, coaches and brands launching products.",
+      deliver: ["15–60 second animated launch or explainer videos", "Kinetic-text Reels for social media", "Brand-matched templates they can reuse"],
+      price: "Around $200–$800 per video, or a monthly bundle.",
+      days: ["Ask Claude to script a 15-second teaser for your own brand.", "Turn it into a simple animated teaser for your portfolio.", "Find 10 upcoming product launches (Product Hunt, launch posts on LinkedIn and X)."],
+      prompt: "Package a motion video service for [your niche]: Teaser (10–15s), Launch Video (30s), Explainer (60s) and a monthly Reels bundle, with what's included, revisions, turnaround and price."
+    }
+  };
+  var ORDER = ["content", "ugc", "websites", "automation", "products", "coaching", "motion"];
+
+  var QUESTIONS = [
+    { q: "What do you enjoy doing most?", o: [
+      { t: "Writing and planning posts", s: { content: 3, products: 1 } },
+      { t: "Making videos and visuals", s: { ugc: 3, motion: 2 } },
+      { t: "Building things that work", d: "Websites, tools, systems", s: { websites: 3, automation: 2 } },
+      { t: "Teaching and explaining", s: { coaching: 3, products: 1 } } ] },
+    { q: "Who can you reach most easily?", o: [
+      { t: "Local small businesses", s: { content: 2, websites: 2, automation: 1 } },
+      { t: "Online brands and shops", s: { ugc: 3, motion: 1 } },
+      { t: "My own followers", s: { products: 3, coaching: 1 } },
+      { t: "Professionals, teams and founders", s: { automation: 2, coaching: 2, motion: 1 } } ] },
+    { q: "How would you like to get paid?", o: [
+      { t: "Monthly retainers", d: "Same clients, every month", s: { content: 2, automation: 1, ugc: 1 } },
+      { t: "Project fees", d: "One job, one invoice", s: { websites: 2, motion: 2, ugc: 1 } },
+      { t: "Products that sell while I sleep", s: { products: 3 } },
+      { t: "Sessions and workshops", s: { coaching: 3 } } ] },
+    { q: "How do you feel about tech?", o: [
+      { t: "Keep it simple. Chat with Claude is enough.", s: { content: 2, coaching: 1, products: 1 } },
+      { t: "Happy with creative tools", d: "Canva, AI video apps", s: { ugc: 2, content: 1, motion: 1 } },
+      { t: "Ready to try Claude Code", s: { websites: 2, motion: 3, automation: 1 } },
+      { t: "I love setting up systems", s: { automation: 3 } } ] },
+    { q: "How much time can you give it each week?", o: [
+      { t: "Under 5 hours", s: { products: 2, coaching: 1 } },
+      { t: "5 to 10 hours", s: { content: 1, ugc: 1, motion: 1, coaching: 1 } },
+      { t: "10 to 20 hours", s: { websites: 1, automation: 1, content: 1, ugc: 1 } },
+      { t: "20+ hours", s: { automation: 1, websites: 1, content: 1, ugc: 1 } } ] },
+    { q: "What do people already ask you for help with?", o: [
+      { t: "Their social media", s: { content: 3 } },
+      { t: "Videos, Reels or ads", s: { ugc: 2, motion: 2 } },
+      { t: "Websites or tech set-up", s: { websites: 2, automation: 2 } },
+      { t: "“How do you use AI?”", s: { coaching: 3, products: 1 } } ] }
+  ];
+
+  var app = document.getElementById("app");
+  var answers = [];
+  var step = 0;
+
+  function save(data) { try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) {} }
+  function load() { try { return JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) { return null; } }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+
+  function score(ans) {
+    var total = {}; ORDER.forEach(function (k) { total[k] = 0; });
+    ans.forEach(function (a, i) { if (a == null) return; var s = QUESTIONS[i].o[a].s; for (var k in s) total[k] += s[k]; });
+    var ranked = ORDER.slice().sort(function (a, b) { return total[b] - total[a] || ORDER.indexOf(a) - ORDER.indexOf(b); });
+    return ranked;
+  }
+
+  function renderQuestion() {
+    var Q = QUESTIONS[step];
+    var pct = Math.round((step / QUESTIONS.length) * 100);
+    var html = '<section class="card q">' +
+      '<div class="progress"><div class="qhead"><span class="qnum">Question ' + (step + 1) + ' of ' + QUESTIONS.length + '</span>' +
+      (step > 0 ? '<button class="link" type="button" id="back">← Back</button>' : '<span></span>') + '</div>' +
+      '<div class="bar" aria-hidden="true"><span style="width:' + pct + '%"></span></div></div>' +
+      '<h2>' + esc(Q.q) + '</h2><div class="opts" role="group" aria-label="' + esc(Q.q) + '">';
+    Q.o.forEach(function (o, i) {
+      html += '<button class="opt" type="button" data-i="' + i + '" aria-pressed="' + (answers[step] === i) + '"><span class="dot" aria-hidden="true"></span><span>' + esc(o.t) + (o.d ? '<small>' + esc(o.d) + '</small>' : '') + '</span></button>';
+    });
+    html += '</div></section>';
+    app.innerHTML = html;
+    app.querySelectorAll(".opt").forEach(function (b) {
+      b.addEventListener("click", function () {
+        answers[step] = Number(b.getAttribute("data-i"));
+        app.querySelectorAll(".opt").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        setTimeout(function () {
+          if (step < QUESTIONS.length - 1) { step++; renderQuestion(); }
+          else { var r = score(answers); save({ answers: answers, best: r[0], next: r[1] }); renderResult(r[0], r[1]); }
+        }, 220);
+      });
+    });
+    var back = document.getElementById("back");
+    if (back) back.addEventListener("click", function () { step--; renderQuestion(); });
+    var first = app.querySelector(".opt"); if (first) first.focus({ preventScroll: true });
+    window.scrollTo({ top: 0 });
+  }
+
+  function renderResult(bestKey, nextKey) {
+    var P = PATHS[bestKey], N = PATHS[nextKey];
+    var html = '<section class="card result">' +
+      '<div class="eyebrow">Your best-fit income path</div>' +
+      '<h2>' + esc(P.name) + '</h2>' +
+      '<p class="tagline">' + esc(P.tagline) + '</p>' +
+      '<div class="facts">' +
+        '<div class="fact"><span class="k">Who pays</span><span>' + esc(P.whoPays) + '</span></div>' +
+        '<div class="fact"><span class="k">What you deliver</span><ul>' + P.deliver.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join("") + '</ul></div>' +
+        '<div class="fact"><span class="k">Starter price to test</span><span>' + esc(P.price) + '</span></div>' +
+      '</div>' +
+      '<p class="also">Also a strong fit for you: <b>' + esc(N.name) + '</b></p>' +
+    '</section>' +
+
+    '<section class="card">' +
+      '<div class="eyebrow">Your 3-day starter plan</div>' +
+      '<ul class="days">' + P.days.map(function (d, i) { return '<li><span class="d">Day ' + (i + 1) + '</span><span>' + esc(d) + '</span></li>'; }).join("") + '</ul>' +
+      '<div class="prompt"><span class="eyebrow">Copy this into Claude</span><pre id="promptText">' + esc(P.prompt) + '</pre>' +
+      '<button class="copy" type="button" id="copy">Copy prompt</button></div>' +
+    '</section>' +
+
+    '<section class="card">' +
+      '<div class="eyebrow">Days 4 to 7 are inside the kit</div>' +
+      '<ul class="days locked">' +
+        '<li><span class="d">Day 4</span><span>Make free samples for your best prospects</span></li>' +
+        '<li><span class="d">Day 5</span><span>Send your first messages, with the exact scripts</span></li>' +
+        '<li><span class="d">Day 6</span><span>Follow up and book calls</span></li>' +
+        '<li><span class="d">Day 7</span><span>Send your first proposal and get paid</span></li>' +
+      '</ul>' +
+    '</section>' +
+
+    '<section class="cta">' +
+      '<div class="eyebrow">Claude Studio Kit 2.0</div>' +
+      '<h3>Get the full 7-day plan for ' + esc(P.name) + '</h3>' +
+      '<p>The kit gives you the lessons for this path in order, the prompts to find clients, proposals that win, and every tool to deliver the work. From your first prompt to your first paying client.</p>' +
+      '<div class="price">$57 <span class="muted" style="font-family:var(--body);font-size:15px;font-weight:600">one-time</span></div>' +
+      '<p><strong>Doors open Wednesday 4 November.</strong> Join in launch week (until Tuesday 10 November) and you also get Threads Growth Studio free, normally $47.</p>' +
+      '<a class="btn" href="' + SALES + '">Get Claude Studio Kit 2.0</a>' +
+      '<a class="btn ghost" href="' + AWL + '" target="_blank" rel="noopener">Join the free AWL community</a>' +
+      '<p class="note">Prices above are starter suggestions to test in your market, not promises of income. Results depend on the work you put in.</p>' +
+    '</section>' +
+
+    '<button class="btn ghost" type="button" id="retake">Retake the quiz</button>';
+    app.innerHTML = html;
+    document.getElementById("retake").addEventListener("click", function () { answers = []; step = 0; save(null); renderQuestion(); });
+    document.getElementById("copy").addEventListener("click", function () {
+      var btn = this, txt = P.prompt;
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy prompt"; }, 1800); };
+      try {
+        navigator.clipboard.writeText(txt).then(done, function () { selectPrompt(); btn.textContent = "Selected. Press copy."; });
+      } catch (e) { selectPrompt(); btn.textContent = "Selected. Press copy."; }
+    });
+    window.scrollTo({ top: 0 });
+  }
+
+  function selectPrompt() {
+    var el = document.getElementById("promptText"); if (!el) return;
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  document.getElementById("start").addEventListener("click", function () { step = 0; answers = []; renderQuestion(); });
+
+  var saved = load();
+  if (saved && saved.best && PATHS[saved.best] && PATHS[saved.next]) { answers = saved.answers || []; renderResult(saved.best, saved.next); }
+})();
+</script>
+</body>
+</html>
