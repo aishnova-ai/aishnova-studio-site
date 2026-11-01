@@ -172,10 +172,13 @@ footer { text-align: center; font-size: 12.5px; color: var(--muted); }
   (function () {
     var ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     var PATH = /^[a-z0-9_.-]{1,40}\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    // Beacons shops on the affiliate's own domain, e.g. ?go=theirshop.store/shop/<product code>
+    var GO = /^(?:[a-z0-9-]+\.)+[a-z]{2,24}\/(?:[a-z0-9_.-]{1,40}\/)?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     function toUrl(v) {
       if (!v) return null;
       if (v.indexOf("aff:") === 0 && ID.test(v.slice(4))) return BEACONS + "?affiliateLinkId=" + v.slice(4).toLowerCase();
       if (v.indexOf("b:") === 0 && PATH.test(v.slice(2))) return "https://shop.beacons.ai/" + v.slice(2);
+      if (v.indexOf("go:") === 0 && GO.test(v.slice(3))) return "https://" + v.slice(3);
       return null;
     }
     var params = null; try { params = new URLSearchParams(location.search); } catch (e) {}
@@ -184,6 +187,7 @@ footer { text-align: center; font-size: 12.5px; color: var(--muted); }
       var a = params.get("aff"), b = params.get("b");
       if (a && ID.test(a)) found = "aff:" + a.toLowerCase();
       else if (b && PATH.test(b)) found = "b:" + b;
+      else if (params.get("go") && GO.test(params.get("go"))) found = "go:" + params.get("go").toLowerCase();
     }
     if (found) { try { localStorage.setItem("csk-quiz-aff2", found); } catch (e) {} }
     else { try { found = localStorage.getItem("csk-quiz-aff2"); } catch (e) {} }

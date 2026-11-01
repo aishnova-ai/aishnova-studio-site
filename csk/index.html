@@ -278,18 +278,22 @@ a{color:#F2EBE3}a:hover{color:#C9A46C}
   var BEACONS = "https://shop.beacons.ai/aishnova/d3b3fed5-50e4-4adb-bd89-109eacfc4ffc";
   var ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   var PATH = /^[a-z0-9_.-]{1,40}\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    // Beacons shops on the affiliate's own domain, e.g. ?go=theirshop.store/shop/<product code>
+    var GO = /^(?:[a-z0-9-]+\.)+[a-z]{2,24}\/(?:[a-z0-9_.-]{1,40}\/)?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   var found = null, params = null;
   try { params = new URLSearchParams(location.search); } catch (e) {}
   if (params) {
     var a = params.get("aff"), b = params.get("b");
     if (a && ID.test(a)) found = "aff:" + a.toLowerCase();
     else if (b && PATH.test(b)) found = "b:" + b;
+      else if (params.get("go") && GO.test(params.get("go"))) found = "go:" + params.get("go").toLowerCase();
   }
   if (found) { try { localStorage.setItem("csk-quiz-aff2", found); } catch (e) {} }
   else { try { found = localStorage.getItem("csk-quiz-aff2"); } catch (e) {} }
   var url = null;
   if (found && found.indexOf("aff:") === 0 && ID.test(found.slice(4))) url = BEACONS + "?affiliateLinkId=" + found.slice(4);
   else if (found && found.indexOf("b:") === 0 && PATH.test(found.slice(2))) url = "https://shop.beacons.ai/" + found.slice(2);
+  else if (found && found.indexOf("go:") === 0 && GO.test(found.slice(3))) url = "https://" + found.slice(3);
   if (!url) return;
   document.querySelectorAll('a[href^="' + BEACONS + '"]').forEach(function (el) { el.href = url; });
 })();
